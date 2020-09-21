@@ -16,13 +16,23 @@ const images = [
     },
 ];
 
-const ulList = document.getElementById('gallery');
-const addImg = images.map(option => {
-    const addLi = document.createElement('li');
-    const addImg = document.createElement('img');
-    addImg.setAttribute('src', `${option.url}`);
-    addImg.setAttribute('alt', `${option.alt}`);
-    // addImg.setAttribute(('width', 640));
-    addLi.appendChild(addImg);
-    ulList.append(addLi);
-});
+// const ulList = document.getElementById('gallery');
+// const addImg = images.map(option => {
+//     const addLi = document.createElement('li');
+//     const addImg = document.createElement('img');
+//     addImg.setAttribute('src', `${option.url}`);
+//     addImg.setAttribute('alt', `${option.alt}`);
+//     addImg.setAttribute('style', 'list-style-type:none; display: flex;');
+//     addLi.appendChild(addImg);
+//     ulList.append(addLi);
+// });
+
+const addImg = ({ url, alt }) =>
+    `<li><img src="${url}" alt="${alt}" width = 200 height = 150></li>`;
+
+const galleryAdd = images.reduce((acc, item) => acc + addImg(item), '');
+
+const galleryListEl = document.querySelector('#gallery');
+
+galleryListEl.insertAdjacentHTML('afterbegin', galleryAdd);
+galleryListEl.setAttribute('style', 'list-style-type:none; display: flex;');
