@@ -12,5 +12,8 @@ const ulList = document.querySelector('#ingredients');
 const foodIngred = ingredients.map(ingredient => {
     const elem = document.createElement('li');
     elem.textContent = ingredient;
-    ulList.append(elem);
+    // ulList.append(elem);
+    return elem;
 });
+
+ulList.append(...foodIngred);
